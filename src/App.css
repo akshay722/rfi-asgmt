@@ -1,5 +1,8 @@
 .App {
-  text-align: center;
+  background-color: #141416;
+  color: white;
+  font-family: "Poppins", sans-serif !important;
+  height: 100vh;
 }
 
 .App-logo {
