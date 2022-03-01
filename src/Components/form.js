@@ -3,8 +3,6 @@ import { useState } from "react";
 import Button from "./button";
 import Header from "./header";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import CancelIcon from "@mui/icons-material/Cancel";
 
 function Form() {
   const [selectToken1, setSelectToken1] = useState("btc");
@@ -31,83 +29,71 @@ function Form() {
   };
 
   return (
-    <div className="my-[5rem] mx-[7rem]">
-      <div className="flex">
-        <span className="text-xs">
-          <ArrowBackIosNewIcon className="!h-[0.7rem]" />
-          Back
-        </span>
-        <span className="text-xs ml-auto">
-          Close
-          <CancelIcon className="!h-[0.7rem]" />
-        </span>
-      </div>
-      <form
-        onSubmit={handleSubmit}
-        className="container max-w-lg m-auto bg-gray-700 pt-[4rem]"
-      >
-        <Header />
-        <div>
-          <div className={cardClass}>
-            <img
-              src={require("../Images/Untitled.png")}
-              className="absolute top-[14%] left-[41%]"
-            />
-            <div
-              className={`${innerElementContainer} w-[48%] pr-[3rem] border-r-2 border-divider-color`}
-            >
-              <div className={innerText}>TOKEN 01</div>
-              <button className={textField}>
-                <img src={require("../Images/btc.png")} className="pr-2" />
-                BTC
-                <KeyboardArrowDownIcon className="ml-auto" />
-              </button>
-            </div>
+    <form
+      onSubmit={handleSubmit}
+      className="container max-w-lg m-auto bg-gray-700 pt-[2rem]"
+    >
+      <Header />
+      <div>
+        <div className={cardClass}>
+          <img
+            src={require("../Images/Untitled.png")}
+            className="absolute top-[14%] left-[41%]"
+          />
+          <div
+            className={`${innerElementContainer} w-[48%] pr-[3rem] border-r-2 border-divider-color`}
+          >
+            <div className={innerText}>TOKEN 01</div>
+            <button className={textField}>
+              <img src={require("../Images/btc.png")} className="pr-2" />
+              BTC
+              <KeyboardArrowDownIcon className="ml-auto" />
+            </button>
+          </div>
 
-            <div className={`${innerElementContainer} w-[48%] pl-[3rem]`}>
-              <div className={innerText}>TOKEN 02</div>
-              <button className={textField}>
-                <img src={require("../Images/matic.png")} className="pr-2" />
-                MATIC
-                <KeyboardArrowDownIcon className="ml-auto" />
-              </button>
-            </div>
-          </div>
-          <div className={cardClass}>
-            <div className={`${innerElementContainer} w-[53%]`}>
-              <div className={innerText}>STARTS ON</div>
-              <input
-                type="datetime-local"
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-                className={textField}
-              />
-            </div>
-            <div className={`${innerElementContainer} w-[43%] pl-[1.5rem]`}>
-              <div className={innerText}>LOT DURATION</div>
-              <input
-                type="text"
-                value={lotDuration}
-                onChange={(e) => setLotDuration(e.target.value)}
-                className={textField}
-              />
-            </div>
-          </div>
-          <div className={cardClass}>
-            <div className={`${innerElementContainer} w-[53%]`}>
-              <div className={innerText}>INITIAL DEPOSIT</div>
-              <input
-                type="number"
-                value={deposit}
-                onChange={(e) => setDeposit(e.target.value)}
-                className={textField}
-              />
-            </div>
+          <div className={`${innerElementContainer} w-[48%] pl-[3rem]`}>
+            <div className={innerText}>TOKEN 02</div>
+            <button className={textField}>
+              <img src={require("../Images/matic.png")} className="pr-2" />
+              MATIC
+              <KeyboardArrowDownIcon className="ml-auto" />
+            </button>
           </div>
         </div>
-        <Button />
-      </form>
-    </div>
+        <div className={cardClass}>
+          <div className={`${innerElementContainer} w-[53%]`}>
+            <div className={innerText}>STARTS ON</div>
+            <input
+              type="datetime-local"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              className={textField}
+            />
+          </div>
+          <div className={`${innerElementContainer} w-[43%] pl-[1.5rem]`}>
+            <div className={innerText}>LOT DURATION</div>
+            <input
+              type="text"
+              value={lotDuration}
+              onChange={(e) => setLotDuration(e.target.value)}
+              className={textField}
+            />
+          </div>
+        </div>
+        <div className={cardClass}>
+          <div className={`${innerElementContainer} w-[53%]`}>
+            <div className={innerText}>INITIAL DEPOSIT</div>
+            <input
+              type="number"
+              value={deposit}
+              onChange={(e) => setDeposit(e.target.value)}
+              className={textField}
+            />
+          </div>
+        </div>
+      </div>
+      <Button />
+    </form>
   );
 }
 
