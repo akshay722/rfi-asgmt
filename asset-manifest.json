@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/rfi-asgm/static/css/main.07081bb0.css",
+    "main.js": "/rfi-asgm/static/js/main.bb59eaaa.js",
+    "static/js/787.af8fb0e8.chunk.js": "/rfi-asgm/static/js/787.af8fb0e8.chunk.js",
+    "static/media/eth.png": "/rfi-asgm/static/media/eth.a85b6de0dc4a013ae2f8.png",
+    "static/media/usdc.png": "/rfi-asgm/static/media/usdc.c4477cfcf6565cacc68b.png",
+    "static/media/bnb.png": "/rfi-asgm/static/media/bnb.27f54c9b112c188df5b5.png",
+    "static/media/box-large.png": "/rfi-asgm/static/media/box-large.e93493d7cd326eb3c669.png",
+    "static/media/usdt.png": "/rfi-asgm/static/media/usdt.c1d587669942a5e9bc47.png",
+    "index.html": "/rfi-asgm/index.html",
+    "main.07081bb0.css.map": "/rfi-asgm/static/css/main.07081bb0.css.map",
+    "main.bb59eaaa.js.map": "/rfi-asgm/static/js/main.bb59eaaa.js.map",
+    "787.af8fb0e8.chunk.js.map": "/rfi-asgm/static/js/787.af8fb0e8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07081bb0.css",
+    "static/js/main.bb59eaaa.js"
+  ]
+}
