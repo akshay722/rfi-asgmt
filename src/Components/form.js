@@ -1,32 +1,69 @@
 import React from "react";
 import { useState } from "react";
+
 import Button from "./button";
 import Header from "./header";
+import TokenSelectionModal from "./tokenSelectionModal";
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 function Form() {
-  const [selectToken1, setSelectToken1] = useState("btc");
-  const [selectToken2, setSelectToken2] = useState("matic");
+  const [selectToken1, setSelectToken1] = useState("BTC");
+  const [selectToken2, setSelectToken2] = useState("MATIC");
   const [startTime, setStartTime] = useState("2021-11-01T03:00");
   const [lotDuration, setLotDuration] = useState("1 day 3 hrs");
   const [deposit, setDeposit] = useState("1000");
+  const [openModal, setOpenModal] = useState(false);
+  const [flag, setFlag] = useState(false);
+  const [tokenDisplay1, setTokenDisplay1] = useState(
+    <>
+      <img src={require(`../Images/btc.png`)} className="pr-2 h-[28px]" />
+      <span>BTC</span>
+    </>
+  );
+  const [tokenDisplay2, setTokenDisplay2] = useState(
+    <>
+      <img src={require(`../Images/matic.png`)} className="pr-2 h-[28px]" />
+      <span>MATIC</span>
+    </>
+  );
+
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
+
+  const handleToken1 = (e) => {
+    handleOpen();
+    setFlag(true);
+    e.preventDefault();
+  };
+
+  const handleToken2 = (e) => {
+    handleOpen();
+    setFlag(false);
+    e.preventDefault();
+  };
+
+  const handleSubmit = (e) => {
+    console.log(
+      `
+      Token 01: ${selectToken1}\n
+      Token 02: ${selectToken2}\n
+      Start Time: ${startTime}\n
+      Lot Duration: ${lotDuration}\n 
+      Initial Deposit: ${deposit}
+      `
+    );
+    e.preventDefault();
+  };
 
   const cardClass = "flex relative bg-dark-late-grey rounded-2xl h-full my-6";
   const textField =
     "bg-dark-late-blue rounded-lg p-2 w-full border-2 border-field-border inline-flex items-center";
   const innerText = "text-xs text-inner-text pb-2";
-  const innerElementContainer = "p-5 pt-3";
-
-  const handleSubmit = (e) => {
-    console.log(
-      `Token 01: ${selectToken1} 
-      Token 02: ${selectToken2} 
-      Start Time: ${startTime} 
-      Lot Duration: ${lotDuration} 
-      Initial Deposit: ${deposit}`
-    );
-    e.preventDefault();
-  };
+  const innerFieldContainer = "p-5 pt-3";
+  const infoIcon =
+    "!h-[0.8rem] mt-[0.5rem] mr-[0.3rem] ml-auto text-inner-text";
 
   return (
     <form
@@ -38,30 +75,38 @@ function Form() {
         <div className={cardClass}>
           <img
             src={require("../Images/Untitled.png")}
-            className="absolute top-[14%] left-[41%]"
+            className="absolute top-[16%] left-[40%]"
           />
           <div
-            className={`${innerElementContainer} w-[48%] pr-[3rem] border-r-2 border-divider-color`}
+            className={`${innerFieldContainer} w-[48%] pr-[3rem] border-r-2 border-divider-color`}
           >
             <div className={innerText}>TOKEN 01</div>
-            <button className={textField}>
-              <img src={require("../Images/btc.png")} className="pr-2" />
-              BTC
+            <button onClick={handleToken1} className={textField}>
+              {tokenDisplay1}
               <KeyboardArrowDownIcon className="ml-auto" />
             </button>
+            <TokenSelectionModal
+              setSelectToken1={setSelectToken1}
+              setSelectToken2={setSelectToken2}
+              setTokenDisplay1={setTokenDisplay1}
+              setTokenDisplay2={setTokenDisplay2}
+              openModal={openModal}
+              handleClose={handleClose}
+              flag={flag}
+            />
           </div>
 
-          <div className={`${innerElementContainer} w-[48%] pl-[3rem]`}>
+          <div className={`${innerFieldContainer} w-[48%] pl-[3rem]`}>
             <div className={innerText}>TOKEN 02</div>
-            <button className={textField}>
-              <img src={require("../Images/matic.png")} className="pr-2" />
-              MATIC
+            <button onClick={handleToken2} className={textField}>
+              {tokenDisplay2}
               <KeyboardArrowDownIcon className="ml-auto" />
             </button>
           </div>
+          <InfoOutlinedIcon className={infoIcon} />
         </div>
         <div className={cardClass}>
-          <div className={`${innerElementContainer} w-[53%]`}>
+          <div className={`${innerFieldContainer} w-[53%]`}>
             <div className={innerText}>STARTS ON</div>
             <input
               type="datetime-local"
@@ -70,18 +115,21 @@ function Form() {
               className={textField}
             />
           </div>
-          <div className={`${innerElementContainer} w-[43%] pl-[1.5rem]`}>
+          <div className={`${innerFieldContainer} w-[43%] pl-[1.5rem]`}>
             <div className={innerText}>LOT DURATION</div>
             <input
               type="text"
               value={lotDuration}
+              pattern="(0?[0-9]|[1-5][0-9]) day (0?[0-9]|1[0-9]|2[0-3]) hrs"
+              title=" -- day -- hrs"
               onChange={(e) => setLotDuration(e.target.value)}
               className={textField}
             />
           </div>
+          <InfoOutlinedIcon className={infoIcon} />
         </div>
         <div className={cardClass}>
-          <div className={`${innerElementContainer} w-[53%]`}>
+          <div className={`${innerFieldContainer} w-[53%]`}>
             <div className={innerText}>INITIAL DEPOSIT</div>
             <input
               type="number"
@@ -90,6 +138,7 @@ function Form() {
               className={textField}
             />
           </div>
+          <InfoOutlinedIcon className={infoIcon} />
         </div>
       </div>
       <Button />
@@ -98,32 +147,3 @@ function Form() {
 }
 
 export default Form;
-
-{
-  /* <select
-              value={selectToken1}
-              className={textField}
-              onChange={(e) => setSelectToken1(e.target.value)}
-            >
-              <option value="btc">BTC</option>
-              <option value="eth">ETH</option>
-              <option value="matic">MATIC</option>
-              <option value="usdt">USDT</option>
-            </select> */
-}
-
-{
-  /* <select
-              value={selectToken2}
-              className={textField}
-              onChange={(e) => setSelectToken2(e.target.value)}
-            >
-              <option value="btc">
-                <img src={require("../Images/btc.png")} />
-                BTC
-              </option>
-              <option value="eth">ETH</option>
-              <option value="matic">MATIC</option>
-              <option value="usdt">USDT</option>
-            </select> */
-}
